@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    // تطبيق التأثير على عناصر الفوائد
     const items = document.querySelectorAll('.benefit-item, .badge');
     items.forEach(item => {
         item.style.opacity = '0';
