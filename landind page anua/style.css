@@ -1,0 +1,490 @@
+:root {
+    --peach-primary: #f8d7cf;
+    --peach-dark: #B17D79;
+    --text-color: #B17D79;
+    --bg-white: #ffffff;
+    --soft-gray: #f2f2f2;
+    --section-spacing: 100px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-white);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+    /* نضمن أن الاتجاه يبدأ من اليسار لليمين ليظهر اللوقو يساراً */
+    direction: ltr; 
+}
+
+/* التأكيد على العناوين والروابط */
+h1, h2, h3, h4, .logo, .shop-link, .badge, .cta-button {
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- الهيدر: اللوقو يسار والرابط يمين --- */
+header {
+    padding: 30px 0;
+    width: 100%;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between; /* يوزع العناصر على الأطراف */
+    align-items: center;
+}
+
+.logo {
+    font-weight: 500;
+    color: var(--peach-dark);
+    font-size: 1.2rem;
+}
+
+.shop-link {
+    text-decoration: none;
+    color: var(--peach-dark);
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--peach-dark);
+    padding-bottom: 2px;
+}
+
+/* --- قسم الهيرو: الصورة في المنتصف تماماً --- */
+.hero {
+    padding: 40px 0;
+    display: flex;
+    justify-content: center; /* توسيط أفقي للـ content */
+    margin-bottom: var(--section-spacing);
+}
+
+.hero-content {
+    width: 100%;
+    max-width: 600px; /* العرض الأنسب للصورة لتشبه التصميم */
+    margin-right: auto; 
+    margin-left: auto; /* يضمن أن المحتوى في المنتصف */
+    text-align: center;
+}
+
+.hero-images {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.main-img-card {
+    width: 100%;
+}
+
+.main-img-card img {
+    width: 100%;       /* تأخذ كامل عرض الـ max-width المكتوب فوق */
+    height: auto;      /* الحفاظ على الأبعاد */
+    display: block;
+    border-radius: 40px; /* زوايا دائرية ناعمة كما في الصورة */
+}
+
+
+/* --- الأيقونات والفوائد (تكملة الستايل) --- */
+.badges h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;             /* وزن الخط (متوسط) */
+    color: var(--peach-dark);     /* اللون الخوخي الغامق */
+    letter-spacing: 1.0px;        /* تباعد بسيط بين الحروف ليعطي فخامة */
+    
+    /* التحكم في الحجم */
+    font-size: 1.4rem;            /* يمكنك تغييره مثلاً إلى 18px أو 1.5rem حسب رغبتك */
+    
+    /* التحكم في المسافة بينه وبين البادجز */
+    margin-bottom: 40px;          /* كلما زاد الرقم زادت المسافة للأسفل */
+    
+    /* لضمان بقاء العنوان في المنتصف دائماً */
+    text-align: center;
+    width: 100%;
+}
+
+/* الحاوية الأساسية تمنع ظهور شريط التمرير الأفقي */
+.badges {
+    position: relative;
+    -webkit-mask-image: linear-gradient(
+        to right,
+        transparent,
+        black 10%,
+        black 90%,
+        transparent
+    );
+    mask-image: linear-gradient(
+        to right,
+        transparent,
+        black 10%,
+        black 90%,
+        transparent
+    );
+}
+
+/* الشريط الذي سيتحرك */
+.badge-wrapper {
+    display: flex;
+    gap: 30px;
+    width: max-content; /* يجعل العرض مساوياً لمجموع العناصر */
+    animation: train-scroll 20s linear infinite; /* حركة مستمرة */
+}
+
+/* تنسيق البادج الفردي */
+.badge {
+    flex-shrink: 0; /* يمنع انكماش البادج */
+    border: 1px solid var(--peach-primary);
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    background-color: white;
+}
+
+/* حركة القطار */
+@keyframes train-scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%); /* يتحرك لنصف المسافة (بسبب تكرار العناصر) */
+    }
+}
+
+/* توقف الحركة عند وضع الماوس (اختياري لراحة المستخدم) */
+.badge-wrapper:hover {
+    animation-play-state: paused;
+}
+
+.benefits {
+    padding: 80px 20px;
+    text-align: center;
+    margin-top: var(--section-spacing);
+}
+
+.benefits h2 {
+    color: var(--peach-dark);
+    margin-bottom: 15px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    letter-spacing: 1.0px;
+    font-size: clamp(1.5rem, 5vw, 2rem); 
+}
+
+.subtitle {
+    font-size: clamp(0.85rem, 2vw, 1rem);
+    max-width: 700px;
+    margin: 0 auto 60px;
+    opacity: 0.8;
+}
+
+.benefits-grid {
+   display: grid;
+    /* الافتراضي للشاشات الكبيرة: 4 أعمدة متساوية */
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 50px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.benefit-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+.icon-circle {
+    width: 80px;
+    height: 80px;
+    background-color: #f2f2f2;
+    border-radius: 50%;
+    margin-bottom: 25px;
+    transition: transform 0.3s ease;
+}
+
+.benefit-item:hover .icon-circle {
+    transform: translateY(-5px);
+}
+
+.benefit-item h4 {
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.benefit-item p {
+    font-size: 0.9rem;
+    color: #888;
+    max-width: 280px;
+    line-height: 1.6;
+}
+
+footer {
+    padding: 60px 20px 100px;
+    text-align: center;
+}
+
+.cta-button {
+    background-color: var(--peach-dark);
+    color: white;
+    border: none;
+    padding: 16px 50px;
+    border-radius: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(212, 163, 152, 0.3);
+}
+
+/* للشاشات المتوسطة (مثل التابلت أو اللابتوب الصغير) */
+@media (max-width: 1024px) {
+    .benefits-grid {
+        /* ترتيبها 2 في كل سطر بدلاً من 3 فوق و1 تحت */
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 40px;
+    }
+}
+
+/* للشاشات الصغيرة (الجوال) */
+@media (max-width: 600px) {
+    .benefits-grid {
+        /* عنصر واحد في كل سطر */
+        grid-template-columns: 1fr; 
+    }
+}
+
+.product-gallery {
+    margin-bottom: var(--section-spacing);
+    margin-top: var(--section-spacing);
+
+}
+
+.gallery-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.gallery-header h2 {
+    color: var(--peach-dark);
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 200px;
+    gap: 15px;
+}
+
+.gallery-item {
+    overflow: hidden;
+    border-radius: 20px;
+    position: relative;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+/* توزيع الصور بشكل عصري غير منتظم */
+.gallery-item.large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.gallery-item.tall {
+    grid-row: span 2;
+}
+
+/* تحسين التجاوب للشاشات الصغيرة */
+@media (max-width: 900px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 150px;
+    }
+}
+
+@media (max-width: 500px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 250px;
+    }
+    .gallery-item.large, .gallery-item.tall {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+}
+
+/* Testimonials */
+.testimonials {
+    margin-top: var(--section-spacing);
+    margin-bottom: var(--section-spacing);
+    text-align: center;
+}
+
+.testimonials h2 {
+    color: var(--peach-dark);
+    margin-bottom: 40px;
+    font-weight: 700;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.testi-card {
+    background: #fffaf9;
+    padding: 30px;
+    border-radius: 25px;
+    border: 1px solid var(--peach-primary);
+    transition: 0.3s;
+}
+
+.testi-card:hover {
+    transform: translateY(-5px);
+}
+
+.stars {
+    color: #ffb800;
+    margin-bottom: 15px;
+}
+
+.testi-card p {
+    font-style: italic;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+}
+
+.testi-card h5 {
+    font-weight: 600;
+    color: var(--peach-dark);
+}
+
+/* Order Form Section */
+.order-section {
+    margin-top: var(--section-spacing);
+    
+}
+
+.form-wrapper {
+    background-color: var(--peach-primary);
+    padding: 60px 40px;
+    border-radius: 40px;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.form-wrapper h2 {
+    color: var(--text-color);
+    margin-bottom: 10px;
+}
+
+.form-wrapper p {
+    margin-bottom: 30px;
+    font-size: 0.9rem;
+}
+
+#orderForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 15px 25px;
+    border-radius: 30px;
+    border: 1px solid transparent;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+}
+
+.input-group input:focus {
+    border-color: var(--peach-dark);
+}
+
+/* Main Footer Update */
+.main-footer {
+    padding: 60px 0;
+    background-color: #fcfcfc;
+    border-top: 1px solid var(--soft-gray);
+    text-align: center;
+    margin-top: var(--section-spacing);
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+.footer-logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--peach-dark);
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 0.85rem;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: var(--peach-dark);
+}
+
+.copyright {
+    font-size: 0.75rem;
+    color: #aaa;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .form-wrapper {
+        padding: 40px 20px;
+        border-radius: 30px;
+    }
+    
+    .footer-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
