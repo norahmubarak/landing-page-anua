@@ -1,10 +1,10 @@
 :root {
     --peach-primary: #f8d7cf;
     --peach-dark: #B17D79;
-    --text-color: #B17D79;
+    --text-color: #b4b2b2;
     --bg-white: #ffffff;
     --soft-gray: #f2f2f2;
-    --section-spacing: 100px;
+    --section-spacing: 90px;
 }
 
 * {
@@ -19,36 +19,32 @@ body {
     color: var(--text-color);
     line-height: 1.6;
     overflow-x: hidden;
-    /* نضمن أن الاتجاه يبدأ من اليسار لليمين ليظهر اللوقو يساراً */
     direction: ltr; 
 }
 
-/* التأكيد على العناوين والروابط */
 h1, h2, h3, h4, .logo, .shop-link, .badge, .cta-button {
     font-family: 'Poppins', sans-serif;
 }
 
-
 .container {
-    max-width: 1100px;
+    max-width: 1300px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 30px;
 }
 
-/* --- الهيدر: اللوقو يسار والرابط يمين --- */
 header {
-    padding: 30px 0;
+    padding: 50px 0;
     width: 100%;
 }
 
 header nav {
     display: flex;
-    justify-content: space-between; /* يوزع العناصر على الأطراف */
+    justify-content: space-between;
     align-items: center;
 }
 
 .logo {
-    font-weight: 500;
+    font-weight: 600;
     color: var(--peach-dark);
     font-size: 1.2rem;
 }
@@ -57,24 +53,30 @@ header nav {
     text-decoration: none;
     color: var(--peach-dark);
     font-size: 0.9rem;
-    border-bottom: 1px solid var(--peach-dark);
+    border-bottom: 1px solid var(--text-color);
     padding-bottom: 2px;
 }
 
-/* --- قسم الهيرو: الصورة في المنتصف تماماً --- */
 .hero {
     padding: 40px 0;
     display: flex;
-    justify-content: center; /* توسيط أفقي للـ content */
+    justify-content: center;
     margin-bottom: var(--section-spacing);
 }
 
 .hero-content {
     width: 100%;
-    max-width: 600px; /* العرض الأنسب للصورة لتشبه التصميم */
+    max-width: 700px;
     margin-right: auto; 
-    margin-left: auto; /* يضمن أن المحتوى في المنتصف */
+    margin-left: 250px;
     text-align: center;
+}
+
+@media (max-width: 900px) {
+    .hero-content {
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 .hero-images {
@@ -85,35 +87,51 @@ header nav {
 
 .main-img-card {
     width: 80%;
+    transition: transform .2s ease;
+    perspective: 1000px;
+    position: relative;
 }
 
 .main-img-card img {
-    width: 100%;       /* تأخذ كامل عرض الـ max-width المكتوب فوق */
-    height: auto;      /* الحفاظ على الأبعاد */
+    width: 100%;
+    height: auto;
     display: block;
-    border-radius: 40px; /* زوايا دائرية ناعمة كما في الصورة */
+    border-radius: 40px;
+    transition: transform .2s ease;
+    animation: float 4s ease-in-out infinite;
 }
 
+.main-img-card::before {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: rgba(248, 215, 207, 0.5);
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
-/* --- الأيقونات والفوائد (تكملة الستايل) --- */
 .badges h3 {
     font-family: 'Poppins', sans-serif;
-    font-weight: 700;             /* وزن الخط (متوسط) */
-    color: var(--peach-dark);     /* اللون الخوخي الغامق */
-    letter-spacing: 1.0px;        /* تباعد بسيط بين الحروف ليعطي فخامة */
-    
-    /* التحكم في الحجم */
-    font-size: 1.4rem;            /* يمكنك تغييره مثلاً إلى 18px أو 1.5rem حسب رغبتك */
-    
-    /* التحكم في المسافة بينه وبين البادجز */
-    margin-bottom: 40px;          /* كلما زاد الرقم زادت المسافة للأسفل */
-    
-    /* لضمان بقاء العنوان في المنتصف دائماً */
+    font-weight: 700;
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    color: var(--peach-dark);
+    margin-bottom: 40px;
     text-align: center;
     width: 100%;
 }
 
-/* الحاوية الأساسية تمنع ظهور شريط التمرير الأفقي */
+@media (max-width: 600px) {
+    .badges h3 {
+        font-size: 1.2rem; 
+        margin-bottom: 30px; 
+    }
+}
+
 .badges {
     position: relative;
     -webkit-mask-image: linear-gradient(
@@ -132,17 +150,16 @@ header nav {
     );
 }
 
-/* الشريط الذي سيتحرك */
 .badge-wrapper {
     display: flex;
-    gap: 30px;
-    width: max-content; /* يجعل العرض مساوياً لمجموع العناصر */
-    animation: train-scroll 20s linear infinite; /* حركة مستمرة */
+    gap: 20px;
+    width: max-content;
+    animation: train-scroll 20s linear infinite;
+    padding-top: 30px;
 }
 
-/* تنسيق البادج الفردي */
 .badge {
-    flex-shrink: 0; /* يمنع انكماش البادج */
+    flex-shrink: 0;
     border: 1px solid var(--peach-primary);
     padding: 12px 30px;
     border-radius: 50px;
@@ -151,17 +168,15 @@ header nav {
     background-color: white;
 }
 
-/* حركة القطار */
 @keyframes train-scroll {
     0% {
         transform: translateX(0);
     }
     100% {
-        transform: translateX(-50%); /* يتحرك لنصف المسافة (بسبب تكرار العناصر) */
+        transform: translateX(-50%);
     }
 }
 
-/* توقف الحركة عند وضع الماوس (اختياري لراحة المستخدم) */
 .badge-wrapper:hover {
     animation-play-state: paused;
 }
@@ -174,7 +189,7 @@ header nav {
 
 .benefits h2 {
     color: var(--peach-dark);
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     letter-spacing: 1.0px;
@@ -183,16 +198,28 @@ header nav {
 
 .subtitle {
     font-size: clamp(0.85rem, 2vw, 1rem);
+    color: var(--text-color);
     max-width: 700px;
     margin: 0 auto 60px;
     opacity: 0.8;
 }
 
+.benefit-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 80%;
+    border: 3px solid #fbf3f0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    object-fit: contain;
+    padding: 4px;
+    display: block;
+    margin-inline: auto;
+}
+
 .benefits-grid {
-   display: grid;
-    /* الافتراضي للشاشات الكبيرة: 4 أعمدة متساوية */
+    display: grid;
     grid-template-columns: repeat(4, 1fr); 
-    gap: 50px;
+    gap: 40px;
     max-width: 1100px;
     margin: 0 auto;
 }
@@ -201,90 +228,90 @@ header nav {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px;
+    padding: 20px;
+    transition: .3s;
 }
 
-.icon-circle {
-    width: 80px;
-    height: 80px;
-    background-color: #f2f2f2;
-    border-radius: 50%;
-    margin-bottom: 25px;
-    transition: transform 0.3s ease;
+.benefit-item:hover {
+    transform: translateY(-10px);
 }
 
-.benefit-item:hover .icon-circle {
-    transform: translateY(-5px);
+.benefit-item:hover .benefit-image {
+    transform: scale(1.1);
 }
 
 .benefit-item h4 {
-    margin-bottom: 12px;
+    margin-top: 50px;
+    margin-bottom: 20px;
     font-size: 1.1rem;
     font-weight: 600;
+    color: var(--peach-dark);
 }
 
 .benefit-item p {
-    font-size: 0.9rem;
-    color: #888;
-    max-width: 280px;
-    line-height: 1.6;
+    max-width: 250px;
+    margin: 0 auto;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--text-color);
+    opacity: 0.8;
 }
 
-footer {
-    padding: 60px 20px 100px;
-    text-align: center;
+@media (max-width: 600px) {
+    .benefits h2 {
+        font-size: 1.2rem; 
+    }
 }
 
-.cta-button {
-    background-color: var(--peach-dark);
-    color: white;
-    border: none;
-    padding: 16px 50px;
-    border-radius: 50px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
+@media (max-width: 600px) {
+    .benefit-item p {
+        font-size: 1rem; 
+    }
 }
 
-.cta-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(212, 163, 152, 0.3);
-}
-
-/* للشاشات المتوسطة (مثل التابلت أو اللابتوب الصغير) */
 @media (max-width: 1024px) {
     .benefits-grid {
-        /* ترتيبها 2 في كل سطر بدلاً من 3 فوق و1 تحت */
         grid-template-columns: repeat(2, 1fr); 
         gap: 40px;
     }
 }
 
-/* للشاشات الصغيرة (الجوال) */
 @media (max-width: 600px) {
     .benefits-grid {
-        /* عنصر واحد في كل سطر */
         grid-template-columns: 1fr; 
     }
 }
 
 .product-gallery {
-    margin-bottom: var(--section-spacing);
-    margin-top: var(--section-spacing);
-
+    margin-top: 3%;
+    margin-bottom: 14%;
 }
 
 .gallery-header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 
 .gallery-header h2 {
     color: var(--peach-dark);
+    margin-bottom: 15px;
+    font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    margin-bottom: 10px;
+    font-size: clamp(1.5rem, 5vw, 2rem); 
+}
+
+@media (max-width: 600px) {
+    .gallery-header h2 {
+        font-size: 1.2rem; 
+    }
+}
+
+.gallery-header p {
+    font-size: clamp(0.85rem, 2vw, 1rem);
+    color: var(--text-color);
+    max-width: 700px;
+    margin: 0 auto 60px;
+    opacity: 0.8;
 }
 
 .gallery-grid {
@@ -298,6 +325,7 @@ footer {
     overflow: hidden;
     border-radius: 20px;
     position: relative;
+    transition: transform .2s ease;
 }
 
 .gallery-item img {
@@ -311,7 +339,6 @@ footer {
     transform: scale(1.1);
 }
 
-/* توزيع الصور بشكل عصري غير منتظم */
 .gallery-item.large {
     grid-column: span 2;
     grid-row: span 2;
@@ -321,7 +348,6 @@ footer {
     grid-row: span 2;
 }
 
-/* تحسين التجاوب للشاشات الصغيرة */
 @media (max-width: 900px) {
     .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -334,13 +360,14 @@ footer {
         grid-template-columns: 1fr;
         grid-auto-rows: 250px;
     }
-    .gallery-item.large, .gallery-item.tall {
-        grid-column: span 1;
-        grid-row: span 1;
+
+    .gallery-item.large,
+    .gallery-item.tall {
+        grid-column: span 2;
+        grid-row: span 2;
     }
 }
 
-/* Testimonials */
 .testimonials {
     margin-top: var(--section-spacing);
     margin-bottom: var(--section-spacing);
@@ -387,10 +414,72 @@ footer {
     color: var(--peach-dark);
 }
 
-/* Order Form Section */
-.order-section {
+.stats-section {
     margin-top: var(--section-spacing);
-    
+    margin-bottom: var(--section-spacing);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    text-align: center;
+}
+
+.stat-card {
+    text-align: center;
+    padding: 35px 20px;
+}
+
+.stat-card:hover {
+    transform: translateY(-8px);
+}
+
+.stat-card h3 {
+    font-size: 2.5rem;
+    color: var(--peach-dark);
+    line-height: 1;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.stat-card p {
+    font-size: 0.90rem;
+    color: var(--text-color);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+.order-section {
+    margin-bottom: 5%;
+    margin-top: 10%;
+}
+
+.cta-button {
+    background-color: var(--peach-dark);
+    color: white;
+    border: none;
+    padding: 16px 50px;
+    border-radius: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(212, 163, 152, 0.3);
 }
 
 .form-wrapper {
@@ -403,11 +492,12 @@ footer {
 }
 
 .form-wrapper h2 {
-    color: var(--text-color);
+    color: var(--peach-dark);
     margin-bottom: 10px;
 }
 
 .form-wrapper p {
+    color: var(--peach-dark);
     margin-bottom: 30px;
     font-size: 0.9rem;
 }
@@ -415,7 +505,7 @@ footer {
 #orderForm {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
     max-width: 400px;
     margin: 0 auto;
 }
@@ -426,6 +516,7 @@ footer {
     border-radius: 30px;
     border: 1px solid transparent;
     font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
     outline: none;
 }
 
@@ -433,13 +524,11 @@ footer {
     border-color: var(--peach-dark);
 }
 
-/* Main Footer Update */
 .main-footer {
-    padding: 60px 0;
+    padding: 20px 0;
     background-color: #fcfcfc;
     border-top: 1px solid var(--soft-gray);
     text-align: center;
-    margin-top: var(--section-spacing);
 }
 
 .footer-content {
@@ -476,15 +565,32 @@ footer {
     color: #aaa;
 }
 
-/* Responsive Adjustments */
 @media (max-width: 768px) {
     .form-wrapper {
         padding: 40px 20px;
         border-radius: 30px;
     }
-    
+
     .footer-links {
         flex-direction: column;
         gap: 10px;
     }
+}
+
+.cursor-glow {
+    position: fixed;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: rgba(248, 215, 207, 0.35);
+    pointer-events: none;
+    z-index: 9999;
+    filter: blur(40px);
+    transform: translate(-50%, -50%);
+    transition: transform 0.08s linear;
+}
+
+.cursor-glow.active {
+    width: 240px;
+    height: 240px;
 }
