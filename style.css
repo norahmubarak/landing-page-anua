@@ -134,26 +134,14 @@ header nav {
 
 .badges {
     position: relative;
-    -webkit-mask-image: linear-gradient(
-        to right,
-        transparent,
-        black 10%,
-        black 90%,
-        transparent
-    );
-    mask-image: linear-gradient(
-        to right,
-        transparent,
-        black 10%,
-        black 90%,
-        transparent
-    );
+    -webkit-mask-image: linear-gradient( to right, transparent, black 10%, black 90%, transparent );
+    mask-image: linear-gradient(to right,transparent, black 10%, black 90%, transparent);
+    overflow: hidden;
 }
 
 .badge-wrapper {
     display: flex;
     gap: 20px;
-    width: max-content;
     animation: train-scroll 20s linear infinite;
     padding-top: 30px;
 }
@@ -577,7 +565,7 @@ header nav {
     }
 }
 
-.cursor-glow {
+cursor-glow 
     position: fixed;
     width: 180px;
     height: 180px;
@@ -588,9 +576,8 @@ header nav {
     filter: blur(40px);
     transform: translate(-50%, -50%);
     transition: transform 0.08s linear;
-}
 
-.cursor-glow.active {
+
+cursor-glow.active 
     width: 240px;
     height: 240px;
-}
