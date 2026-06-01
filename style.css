@@ -13,9 +13,7 @@
     box-sizing: border-box;
 }
 
-* {
-    outline: 1px solid red;
-}
+
 
 body {
     font-family: 'Poppins', sans-serif;
