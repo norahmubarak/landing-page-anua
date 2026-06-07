@@ -25,7 +25,7 @@ The goal of this project was to practice front-end development skills by creatin
 
 ## Preview
 
-Add screenshots or a live demo link here.
+(https://norahmubarak.github.io/landing-page-anua/)
 
 ## What I Learned here ?
 
