@@ -337,13 +337,12 @@ header nav {
         gap: 10px;
     }
 
-    .gallery-item.large {
-        grid-column: span 2;
-        grid-row: span 1;
-    }
-
+     .gallery-item,
+    .gallery-item.large,
     .gallery-item.tall {
-        grid-row: span 1;
+        grid-column: auto;
+        grid-row: auto;
+        aspect-ratio: 0 / 1;
     }
 }
 
