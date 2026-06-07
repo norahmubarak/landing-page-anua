@@ -330,24 +330,18 @@ header nav {
     }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 768px) {
     .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: 100px;
-        gap: 8px;
+        gap: 10px;
     }
 
-    .gallery-item.large {
-        grid-column: span 2;
-        grid-row: span 2;
-    }
-
+    .gallery-item,
+    .gallery-item.large,
     .gallery-item.tall {
-        grid-row: span 2;
-    }
-
-    .gallery-item {
-        border-radius: 14px;
+        grid-column: auto;
+        grid-row: auto;
+        aspect-ratio: 1/1;
     }
 }
 
