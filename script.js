@@ -25,16 +25,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const reveals = document.querySelectorAll('.reveal');
 
-window.addEventListener('scroll', () => {
-    reveals.forEach(item => {
-        const top = item.getBoundingClientRect().top;
 
-        if(top < window.innerHeight - 100){
-            item.classList.add('active');
-        }
+document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.testi-card');
+    const dots = document.querySelectorAll('.dot');
+    let currentIndex = 0;
+    const interval = 4000; // 
+
+    function showSlide(index) {
+        cards.forEach((card, i) => {
+            card.classList.remove('active', 'prev');
+            if (i < index) {
+                card.classList.add('prev');
+            }
+        });
+        
+        
+        cards[index].classList.add('active');
+        
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+        });
+    }
+
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % cards.length;
+        showSlide(currentIndex);
+    }
+
+    
+    let autoPlay = setInterval(nextSlide, interval);
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            clearInterval(autoPlay);
+            currentIndex = index;
+            showSlide(currentIndex);
+            autoPlay = setInterval(nextSlide, interval);
+        });
+    });
+
+    const slider = document.querySelector('.testimonials-slider');
+    slider.addEventListener('mouseenter', () => clearInterval(autoPlay));
+    slider.addEventListener('mouseleave', () => {
+        autoPlay = setInterval(nextSlide, interval);
     });
 });
-
 
 
 const glow = document.querySelector('.cursor-glow');
@@ -120,15 +156,6 @@ card.addEventListener('mousemove', (e) => {
 card.addEventListener('mouseleave', () => {
     image.style.transform = 'rotateX(0) rotateY(0)';
 });
-
-window.addEventListener('scroll', () => {
-
-    const img = document.querySelector('.main-img-card img');
-
-    img.style.transform =
-        `translateY(${window.scrollY * 0.15}px)`;
-});
-
 
 
 document.querySelectorAll('.gallery-item').forEach(item => {
